@@ -10,10 +10,11 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 html,body{margin:0;height:100%;background:var(--bg);font-family:"Samsung One","Roboto",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tx);overflow:hidden}
 body{display:grid;place-items:center}
-#phone{position:relative;overflow:hidden;height:100dvh;aspect-ratio:9/19.5;max-width:100vw;background:#000;container-type:size}
+#phone{position:relative;overflow:hidden;height:100dvh;aspect-ratio:9/19.5;max-width:100vw;background:#000;container-type:size;padding-top:env(safe-area-inset-top,0px)}
 @media (min-width:600px){#phone{border-radius:34px;box-shadow:0 0 0 2px #222}}
 @media (max-width:599px){#phone{width:100vw;height:100dvh;aspect-ratio:auto}}
 .screen{position:absolute;inset:0;overflow:hidden}
+#lock,#lcontent,#pad{touch-action:none}
 .hidden{display:none!important}
 .bg{position:absolute;inset:0;background-size:cover;background-position:center}
 .dim{position:absolute;inset:0;background:#000}
@@ -43,16 +44,17 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 .link{background:none;border:0;color:var(--ac);font-size:3.6cqw;cursor:pointer;padding:0}
 .err{color:#ff6b6b;font-size:3.4cqw;margin-top:2cqw;min-height:4cqw}
 /* status */
-.status{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:max(env(safe-area-inset-top),2.4cqw) 7cqw 0;font-size:3.5cqw;font-weight:500;z-index:5}
+.status{position:absolute;top:-24px;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:calc(env(safe-area-inset-top, 0px) + 1.2cqw) 7cqw 0;font-size:3.5cqw;font-weight:500;z-index:5;color:rgba(25,25,25,.86);line-height:1.2;transform:translateY(-.2cqw)}
 .status .r{display:flex;gap:1.6cqw;align-items:center}
-.bat{width:5.4cqw;height:2.7cqw;border:1.5px solid #fff;border-radius:.8cqw;position:relative;padding:1px}
-.bat i{display:block;height:100%;width:78%;background:#fff;border-radius:.4cqw}
-.sig{letter-spacing:-.4cqw;font-size:3cqw}
+.bat{width:5.4cqw;height:2.7cqw;border:1.5px solid rgba(25,25,25,.86);border-radius:.8cqw;position:relative;padding:1px;background:rgba(255,255,255,.05)}
+.bat i{display:block;height:100%;width:78%;background:rgba(25,25,25,.86);border-radius:.4cqw}
+.sig{letter-spacing:-.4cqw;font-size:3cqw;color:rgba(25,25,25,.86)}
+.status span{color:rgba(25,25,25,.86)}
 /* lock */
 #lock .content{position:absolute;inset:0;text-align:center;transition:transform .35s,opacity .35s}
 #lock.pad-open .content{transform:translateY(-6cqh) scale(.96);opacity:0;pointer-events:none}
-.ldate{position:absolute;top:13cqh;left:0;right:0;font-size:4.4cqw;font-weight:400}
-.lclock{position:absolute;top:15.5cqh;left:0;right:0;font-size:25cqw;font-weight:300;letter-spacing:-.6cqw;line-height:1;font-family:"Samsung One","Segoe UI",system-ui,-apple-system,sans-serif;text-shadow:0 0 14px rgba(255,255,255,.08)}
+.ldate{position:absolute;color:#123050;top:13cqh;left:0;right:0;font-size:4.4cqw;font-weight:500}
+.lclock{position:absolute;top:15.5cqh;left:0;right:0;font-size:32cqw;font-weight:900;letter-spacing:-1.2cqw;line-height:.9;font-family:"Arial Rounded MT Bold","Trebuchet MS","Avenir Next Rounded","Segoe UI",sans-serif;color:#123050;transform:skewX(-8deg) rotate(-1deg)}
 .owner{position:absolute;top:34cqh;left:0;right:0;font-size:3.5cqw;opacity:.85}
 .notifs{position:absolute;top:41cqh;left:5cqw;right:5cqw;display:flex;flex-direction:column;gap:2cqw;text-align:left}
 .n{background:rgba(255,255,255,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:5cqw;padding:3cqw 4cqw;font-size:3.4cqw;display:flex;gap:3cqw;align-items:center}
@@ -86,7 +88,7 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 .app i{width:14.5cqw;height:14.5cqw;border-radius:4.4cqw;display:grid;place-items:center;font-size:7.4cqw;font-style:normal;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .app:active{transform:scale(.92)}
 .hwid{position:absolute;top:7cqh;left:7cqw;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-.hwid b{font-size:15cqw;font-weight:300;display:block;line-height:1}
+.hwid b{font-size:15cqw;font-weight:900;display:block;line-height:.95;font-family:"Arial Rounded MT Bold","Trebuchet MS","Avenir Next Rounded","Segoe UI",sans-serif;letter-spacing:-.12em;color:#5aa9ff;text-shadow:0 1px 0 rgba(255, 255, 255, 0.183),0 8px 18px rgba(0,0,0,.18);transform:skewX(-7deg) rotate(-1.2deg)}
 .hwid span{font-size:3.8cqw}
 .search{position:absolute;bottom:14.5cqh;left:5cqw;right:5cqw;height:12cqw;border-radius:6cqw;background:rgba(255,255,255,.25);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;padding:0 5cqw;font-size:4cqw;gap:3cqw}
 .dock{position:absolute;bottom:3.4cqh;left:5cqw;right:5cqw;display:flex;justify-content:space-around;padding:1cqh 0}
@@ -95,10 +97,19 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 #home.enter{animation:zin .45s}
 @keyframes zin{from{transform:scale(1.12);opacity:0}to{transform:none;opacity:1}}
 #home .dim,#home .status,#home .hwid,#home .grid,#home .search,#home .dock,#home .bar{display:none}
+/* phone off */
+#off{background:#000;display:grid;place-items:center}
+#off::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.04),rgba(0,0,0,0) 34%)}
+.off-hint{position:absolute;bottom:10cqh;left:0;right:0;text-align:center;font-size:3.2cqw;color:rgba(255,255,255,.7);letter-spacing:.12em;text-transform:uppercase}
 </style>
 </head>
 <body>
 <div id="phone">
+
+<!-- OFF -->
+<section id="off" class="screen hidden">
+  <div class="off-hint"></div>
+</section>
 
 <!-- SETUP -->
 <section id="setup" class="screen">
@@ -106,7 +117,7 @@ input[type=range]{width:100%;accent-color:var(--ac)}
   <p class="sub">Samsung-style PIN lock prank. Set it up, then press Start Lock.</p>
 
   <div class="card"><h3>The trick</h3>
-    <div class="row"><div>Wrong attempts first<small>No PIN is set. Any 4-digit number fails this many times, then the next one unlocks.</small></div><select id="wrongN" style="background:var(--card2);color:#fff;border:0;border-radius:3cqw;padding:2.5cqw 3cqw;font-size:4cqw"><option>1</option><option>2</option><option>3</option></select></div>
+    <div class="row"><div>Wrong attempts first<small>No PIN is set. Any 4-digit number fails this many times, then the next one unlocks.</small></div><select id="wrongN" style="background:var(--card2);color:#fff;border:0;border-radius:3cqw;padding:2.5cqw 3cqw;font-size:4cqw"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
   </div>
 
   <div class="card"><h3>Lock screen wallpaper</h3><div class="sw-row" id="wpL"></div></div>
@@ -123,6 +134,7 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 
   <div class="card"><h3>Intruder log</h3>
     <div class="row"><div>Total wrong attempts<small>Saved on this device</small></div><b id="total" style="font-size:6cqw">0</b></div>
+    <div class="row" style="display:block;padding-top:0"><div style="margin-bottom:2cqw">Saved wrong PINs</div><div id="savedPins" style="font-size:3.2cqw;line-height:1.6;color:#fff;opacity:.9;word-break:break-word"></div></div>
     <button class="link" id="resetCount">Reset counter</button>
   </div>
 
@@ -177,13 +189,29 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 <script>
 const $=s=>document.querySelector(s);
 const PRE=['linear-gradient(160deg,#0f2027,#203a43 50%,#2c5364)','linear-gradient(200deg,#ff9a8b,#a18cd1 50%,#1a1a40)','radial-gradient(circle at 30% 20%,#7f7fd5,#2a2a72 60%,#0b0b2a)','linear-gradient(180deg,#f6d365,#fda085 55%,#3b1f4a)','linear-gradient(160deg,#134e5e,#71b280)','linear-gradient(200deg,#232526,#414345)'];
-const DEF={wrongN:1,lockWp:{t:'p',v:0},homeWp:{t:'p',v:2},showCount:true,lockout:true,vibrate:true,notifs:true,h24:false,dim:25,owner:'If found, please call 98765 43210',total:0};
+const DEF={wrongN:1,lockWp:{t:'p',v:0},homeWp:{t:'p',v:2},showCount:true,lockout:true,vibrate:true,notifs:true,h24:false,dim:25,owner:'If found, please call 98765 43210',total:0,failedPins:[]};
 let S={...DEF};
-try{S={...DEF,...JSON.parse(localStorage.getItem('fakelock')||'{}')}}catch(e){}
+try{S={...DEF,...JSON.parse(localStorage.getItem('fakelock')||'{}')}; if(!Array.isArray(S.failedPins)) S.failedPins=[];}catch(e){S={...DEF};}
 const save=()=>{try{localStorage.setItem('fakelock',JSON.stringify(S))}catch(e){}};
 
+function renderFailedPins(){
+  const box=$('#savedPins');
+  if(!box)return;
+  const items=(S.failedPins||[]).slice(-10).reverse();
+  box.innerHTML = items.length ? items.map(p=>`<div>• ${p}</div>`).join('') : '<span style="opacity:.65">No wrong PINs saved yet.</span>';
+}
+
 function applyWp(el,w){el.style.backgroundImage=w.t==='i'?`url(${w.v})`:PRE[w.v]}
-function screen(id){['setup','lock','home'].forEach(s=>$('#'+s).classList.toggle('hidden',s!==id))}
+function screen(id){['off','setup','lock','home'].forEach(s=>$('#'+s).classList.toggle('hidden',s!==id))}
+
+let offTapTS=0;
+function powerOff(){screen('off');}
+function wakeFromOff(){showLock();}
+$('#off').addEventListener('pointerup',()=>{
+  const now=Date.now();
+  if(now-offTapTS<300){offTapTS=0;wakeFromOff();return}
+  offTapTS=now;
+});
 
 /* ---------- setup ---------- */
 function picker(box,key){
@@ -196,10 +224,13 @@ function picker(box,key){
       const f=e.target.files[0];if(!f)return;
       const r=new FileReader();
       r.onload=()=>{const im=new Image();im.onload=()=>{
-        const k=Math.min(1,1400/Math.max(im.width,im.height));
-        const c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;
-        c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-        S[key]={t:'i',v:c.toDataURL('image/jpeg',.78)};draw()};im.src=r.result};
+        const maxDim=2400;
+        const scale=Math.min(1,maxDim/Math.max(im.width,im.height));
+        const w=Math.max(1,Math.round(im.width*scale));
+        const h=Math.max(1,Math.round(im.height*scale));
+        const c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(im,0,0,w,h);
+        S[key]={t:'i',v:c.toDataURL('image/jpeg',.92)};draw()};im.src=r.result};
       r.readAsDataURL(f);
     };
   };draw();
@@ -208,31 +239,30 @@ function fillSetup(){
   $('#wrongN').value=S.wrongN;
   ['showCount','vibrate','notifs','h24'].forEach(k=>$('#'+k).checked=S[k]);
   $('#dim').value=S.dim;$('#owner').value=S.owner;$('#total').textContent=S.total;
+  renderFailedPins();
   picker('#wpL','lockWp');picker('#wpH','homeWp');
 }
-$('#resetCount').onclick=()=>{S.total=0;save();$('#total').textContent=0};
-$('#start').onclick=async()=>{
-  S.wrongN=+$('#wrongN').value;
-  ['showCount','vibrate','notifs','h24'].forEach(k=>S[k]=$('#'+k).checked);
-  S.dim=+$('#dim').value;S.owner=$('#owner').value;save();
-  try{await document.documentElement.requestFullscreen({navigationUI:'hide'})}catch(e){}
-  try{window._wl=await navigator.wakeLock.request('screen')}catch(e){}
-  try{history.pushState({},'')}catch(e){}
-  fails=0;showLock();
-};
-
-/* ---------- clock ---------- */
 function tick(){
   const d=new Date();
   let h=d.getHours(),m=String(d.getMinutes()).padStart(2,'0');
   const t24=S.h24;
-  const hh=t24?String(h).padStart(2,'0'):String(h%12||12);
+  const hh=t24?String(h).padStart(2,'0'):String(h%12||12).padStart(2,'0');
   const txt=hh+':'+m;
   const date=d.toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric'});
   $('#lclock').textContent=txt;$('#ldate').textContent=date;
   $('#lst').textContent=txt+(t24?'':(h<12?' AM':' PM'));
   $('#hst').textContent=$('#lst').textContent;
   $('#hclock').textContent=txt;$('#hdate').textContent=date;
+}
+$('#resetCount').onclick=()=>{S.total=0;S.failedPins=[];save();$('#total').textContent=0;renderFailedPins()};
+$('#start').onclick=async()=>{
+  S.wrongN=+$('#wrongN').value;
+  ['showCount','vibrate','notifs','h24'].forEach(k=>S[k]=$('#'+k).checked);
+  S.dim=+$('#dim').value;S.owner=$('#owner').value;save();
+  fails=0;powerOff();
+  try{await document.documentElement.requestFullscreen({navigationUI:'hide'})}catch(e){}
+  try{window._wl=await navigator.wakeLock.request('screen')}catch(e){}
+  try{history.pushState({},'')}catch(e){}
 }
 setInterval(tick,1000);tick();
 
@@ -245,11 +275,6 @@ $('#keys').innerHTML=KEYS.map(([k,s])=>{
   return`<button class="k" data-k="${k}">${k}<small>${s||'&nbsp;'}</small></button>`}).join('');
 document.querySelectorAll('.k').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();press(b.dataset.k)}));
 
-function showLock(){
-  screen('lock');applyWp($('#lbg'),S.lockWp);$('#ldim').style.opacity=S.dim/100;
-  $('#lowner').textContent=S.owner;$('#lnotifs').style.display=S.notifs?'flex':'none';
-  $('#lock').classList.remove('pad-open');resetPad();tick();
-}
 function resetPad(){entered='';if(wrongMsgTimer)clearTimeout(wrongMsgTimer);wrongMsgTimer=null;$('#pmsg').textContent='';drawCount()}
 function drawDots(){$('#dots').innerHTML='<i></i>'.repeat(entered.length)}
 function drawCount(){$('#pcount').textContent=(S.showCount&&fails>0)?`Wrong attempts: ${fails}`:''}
@@ -271,11 +296,18 @@ function check(){
   if(fails>=S.wrongN){fails=0;unlock()}else wrong();
 }
 function wrong(){
-  fails++;S.total++;save();
+  const badPin = entered;
+  fails++;S.total++;
+  if(!Array.isArray(S.failedPins)) S.failedPins=[];
+  S.failedPins.push(badPin);
+  if(S.failedPins.length>20) S.failedPins=S.failedPins.slice(-20);
+  save();
   entered='';drawDots();
   $('#pmsg').textContent='Wrong PIN';
   if(wrongMsgTimer)clearTimeout(wrongMsgTimer);
   wrongMsgTimer=setTimeout(()=>{ $('#pmsg').textContent=''; wrongMsgTimer=null; },2000);
+  $('#total').textContent=S.total;
+  renderFailedPins();
   drawCount();
   const d=$('#dots');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');
   if(S.vibrate&&navigator.vibrate)navigator.vibrate([180,60,180]);
@@ -294,12 +326,38 @@ function unlock(){
   const h=$('#home');h.classList.remove('enter');void h.offsetWidth;h.classList.add('enter');
 }
 
+function showLock(){
+  screen('lock');
+  applyWp($('#lbg'),S.lockWp);$('#ldim').style.opacity=S.dim/100;
+  $('#lowner').textContent=S.owner;$('#lnotifs').style.display=S.notifs?'flex':'none';
+  $('#lock').classList.remove('pad-open');resetPad();tick();
+}
+
 /* swipe up / tap to open pad */
 (()=>{
-  const c=$('#lcontent');let y0=null;
-  c.addEventListener('pointerdown',e=>{y0=e.clientY});
-  c.addEventListener('pointermove',e=>{if(y0!==null&&y0-e.clientY>60){y0=null;openPad()}});
-  c.addEventListener('pointerup',e=>{if(y0!==null&&Math.abs(y0-e.clientY)<8)openPad();y0=null});
+  const lock=$('#lock');
+  const c=$('#lcontent');
+  let y0=null;
+
+  lock.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.k'))return;
+    y0=e.clientY;
+  });
+
+  lock.addEventListener('pointermove',e=>{
+    if(y0===null) return;
+    if(y0-e.clientY>60){
+      y0=null;
+      openPad();
+    }
+  });
+
+  lock.addEventListener('pointerup',e=>{
+    if(y0===null) return;
+    if(Math.abs(y0-e.clientY)<8) openPad();
+    y0=null;
+  });
+
   const p=$('#pad');let py=null;
   p.addEventListener('pointerdown',e=>{py=e.clientY});
   p.addEventListener('pointerup',e=>{if(py!==null&&e.clientY-py>140)closePad();py=null});
@@ -340,7 +398,6 @@ function exitApp(){
 /* ---------- misc guards ---------- */
 document.addEventListener('contextmenu',e=>e.preventDefault());
 addEventListener('popstate',()=>{if($('#setup').classList.contains('hidden'))try{history.pushState({},'')}catch(e){}});
-fillSetup();
-</script>
+fillSetup();screen('setup');</script>
 </body>
 </html>
