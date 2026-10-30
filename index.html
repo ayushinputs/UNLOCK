@@ -104,6 +104,9 @@ input[type=range]{width:100%;accent-color:var(--ac)}
 </style>
 </head>
 <body>
+<audio id="unlockSound" preload="auto" aria-hidden="true">
+  <source src="Lock_Ui_Sound_Audio_Galaxy_A05s_Samsung_Ringtone_(by native-ringtones.com).mp3" type="audio/mpeg">
+</audio>
 <div id="phone">
 
 <!-- OFF -->
@@ -155,8 +158,12 @@ input[type=range]{width:100%;accent-color:var(--ac)}
       <div class="n"><div class="ic" style="background:#2ecc71">💬</div><div><b>Messages <em>· now</em></b>Hey, are you free tonight?</div></div>
       <div class="n"><div class="ic" style="background:#e74c3c">📧</div><div><b>Mail <em>· 5m</em></b>Your order has been shipped</div></div>
     </div>
-    <div class="shortcut" style="left:9cqw">📞</div>
-    <div class="shortcut" style="right:9cqw">📷</div>
+    <div class="shortcut" style="left:9cqw; color:#ffffff9a; background:rgba(255,255,255,.08);">
+      <svg viewBox="0 0 24 24" width="62%" height="62%" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 6.18 2 2 0 0 1 4.11 4h3a2 2 0 0 1 2 1.72c.12.9.3 1.79.55 2.64a2 2 0 0 1-.45 2.11L8 10.91a16 16 0 0 0 5.09 5.09l.44-.44a2 2 0 0 1 2.11-.45c.85.25 1.74.43 2.64.55A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div class="shortcut" style="right:9cqw; color:#ffffff8e; background:rgba(255,255,255,.08);">
+      <svg viewBox="0 0 24 24" width="62%" height="62%" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h6l2 3h3a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    </div>
     <div class="hint">Swipe up to unlock</div>
     <div class="bar"></div>
   </div>
@@ -322,6 +329,11 @@ function startLockout(sec){
   };upd();lockT=setInterval(upd,500);
 }
 function unlock(){
+  const unlockAudio = document.getElementById('unlockSound');
+  if (unlockAudio) {
+    unlockAudio.currentTime = 0;
+    unlockAudio.play().catch(()=>{});
+  }
   clearTimeout(idleT);screen('home');applyWp($('#hbg'),S.homeWp);
   const h=$('#home');h.classList.remove('enter');void h.offsetWidth;h.classList.add('enter');
 }
